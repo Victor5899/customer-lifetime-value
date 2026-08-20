@@ -1,0 +1,51 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+.virtualenv/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE / editor temporary files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+
+# Local environment files
+.env
+.env.*
+
+# Generated data outputs
+data/raw/*
+data/processed/*
+data/output/*
+
+# Tableau temporary and extract files
+~$*.twb
+~$*.twbx
+*.twbr
+*.hyper
+*.tde
+*.log

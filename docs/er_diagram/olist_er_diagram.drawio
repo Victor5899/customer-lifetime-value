@@ -1,0 +1,134 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram name="Olist 9-Table ER Diagram" id="olist-er-diagram">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="customers" value="&lt;b style='font-size:13px;'&gt;customers&lt;/b&gt;&lt;hr size='1'/&gt;&lt;b&gt;PK:&lt;/b&gt; customer_id  (Verified, order-scoped -- see note below)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; customer_zip_code_prefix -&gt; geolocation.geolocation_zip_code_prefix  (Inferred, Warning)&lt;br/&gt;customer_unique_id -- the REAL persistent customer id (96,096 distinct; 1:many with orders, see purple link)&lt;br/&gt;customer_city&lt;br/&gt;customer_state&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="320" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="orders" value="&lt;b style='font-size:13px;'&gt;orders&lt;/b&gt;&lt;hr size='1'/&gt;&lt;b&gt;PK:&lt;/b&gt; order_id  (Verified)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; customer_id -&gt; customers.customer_id  (Verified, 1:1 -- order-scoped)&lt;br/&gt;order_status&lt;br/&gt;order_purchase_timestamp&lt;br/&gt;order_approved_at&lt;br/&gt;order_delivered_carrier_date&lt;br/&gt;order_delivered_customer_date&lt;br/&gt;order_estimated_delivery_date&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="440" y="40" width="320" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="order_items" value="&lt;b style='font-size:13px;'&gt;order_items&lt;/b&gt;&lt;hr size='1'/&gt;&lt;b&gt;PK:&lt;/b&gt; (order_id, order_item_id)  (Verified composite)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; order_id -&gt; orders.order_id  (Verified)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; product_id -&gt; products.product_id  (Verified)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; seller_id -&gt; sellers.seller_id  (Verified)&lt;br/&gt;shipping_limit_date&lt;br/&gt;price&lt;br/&gt;freight_value&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="840" y="40" width="320" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="payments" value="&lt;b style='font-size:13px;'&gt;payments&lt;/b&gt;&lt;hr size='1'/&gt;&lt;b&gt;PK:&lt;/b&gt; (order_id, payment_sequential)  (Verified composite)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; order_id -&gt; orders.order_id  (Verified)&lt;br/&gt;payment_type&lt;br/&gt;payment_installments&lt;br/&gt;payment_value&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="40" width="300" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="reviews" value="&lt;b style='font-size:13px;'&gt;reviews&lt;/b&gt;&lt;hr size='1'/&gt;&lt;span style='color:#B85450;'&gt;&lt;b&gt;KEY (Flagged):&lt;/b&gt; review_id (duplicates found: 789 values / 1,603 rows / 1,412 orders -- NOT a verified PK)&lt;/span&gt;&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; order_id -&gt; orders.order_id  (Verified)&lt;br/&gt;review_score&lt;br/&gt;review_comment_title&lt;br/&gt;review_comment_message&lt;br/&gt;review_creation_date&lt;br/&gt;review_answer_timestamp&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#FFF2CC;strokeColor=#D6B656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="320" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="products" value="&lt;b style='font-size:13px;'&gt;products&lt;/b&gt;&lt;hr size='1'/&gt;&lt;b&gt;PK:&lt;/b&gt; product_id  (Verified)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; product_category_name -&gt; category_translation.product_category_name  (Verified, Warning)&lt;br/&gt;product_name_length, product_description_length&lt;br/&gt;product_photos_qty&lt;br/&gt;product_weight_g and dimensions (cm)&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="440" y="360" width="320" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="sellers" value="&lt;b style='font-size:13px;'&gt;sellers&lt;/b&gt;&lt;hr size='1'/&gt;&lt;b&gt;PK:&lt;/b&gt; seller_id  (Verified)&lt;br/&gt;&lt;i&gt;FK:&lt;/i&gt; seller_zip_code_prefix -&gt; geolocation.geolocation_zip_code_prefix  (Inferred, Warning)&lt;br/&gt;seller_city&lt;br/&gt;seller_state&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="840" y="360" width="320" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="category_translation" value="&lt;b style='font-size:13px;'&gt;category_translation&lt;/b&gt;&lt;hr size='1'/&gt;&lt;b&gt;PK:&lt;/b&gt; product_category_name  (Verified, 71/71 unique)&lt;br/&gt;product_category_name_english&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="360" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="geolocation" value="&lt;b style='font-size:13px;'&gt;geolocation&lt;/b&gt;&lt;hr size='1'/&gt;&lt;span style='color:#666666;'&gt;&lt;b&gt;No verified PK:&lt;/b&gt; (ZIP prefix repeats: 19,015 unique values / 1,000,163 rows)&lt;/span&gt;&lt;br/&gt;geolocation_zip_code_prefix  -- Inferred join field&lt;br/&gt;geolocation_lat, geolocation_lng&lt;br/&gt;geolocation_city, geolocation_state&lt;br/&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;fillColor=#F5F5F5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="440" y="650" width="320" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="rel1" value="1 : 1
+Verified (customer_id, order-scoped)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#2E7D32;dashed=0;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#ffffff;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="1" source="customers" target="orders">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel2" value="1 : many
+Verified (customer_unique_id, REAL customer)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#8E44AD;dashed=1;fontSize=10;fontColor=#8E44AD;labelBackgroundColor=#ffffff;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.6;entryDx=0;entryDy=0;" edge="1" parent="1" source="customers" target="orders">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel3" value="1 : many
+Verified" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#2E7D32;dashed=0;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="orders" target="order_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel4" value="1 : many
+Verified" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#2E7D32;dashed=0;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="orders" target="payments">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel5" value="1 : many
+Verified" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#2E7D32;dashed=0;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="orders" target="reviews">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel6" value="1 : many
+Verified" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#2E7D32;dashed=0;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="products" target="order_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel7" value="1 : many
+Verified" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#2E7D32;dashed=0;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="sellers" target="order_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel8" value="1 : many
+Verified (Warning, 0.04% unmatched)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#F57F17;dashed=1;fontSize=10;fontColor=#F57F17;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="category_translation" target="products">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel9" value="many : many
+Inferred (Warning, 0.28% unmatched)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#757575;dashed=1;fontSize=10;fontColor=#757575;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="geolocation" target="customers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel10" value="many : many
+Inferred (Warning, 0.23% unmatched)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#757575;dashed=1;fontSize=10;fontColor=#757575;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="geolocation" target="sellers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" value="Legend" style="text;html=1;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="550" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_swatch_575" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="575" width="24" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_575" value="Verified key / table" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1272" y="575" width="340" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_swatch_599" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="599" width="24" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_599" value="Inferred key (no unique parent, e.g. ZIP prefix)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1272" y="599" width="340" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_swatch_623" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="623" width="24" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_623" value="Flagged for audit (non-unique key found: reviews.review_id)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1272" y="623" width="340" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_line_653" value="" style="endArrow=none;startArrow=none;strokeColor=#2E7D32;dashed=0;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="662" as="sourcePoint" />
+            <mxPoint x="1264" y="662" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_line_label_653" value="Referential check PASSED (0% unmatched child rows)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1272" y="653" width="380" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_line_677" value="" style="endArrow=none;startArrow=none;strokeColor=#8E44AD;dashed=1;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="686" as="sourcePoint" />
+            <mxPoint x="1264" y="686" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_line_label_677" value="Derived real-customer relationship (customer_unique_id, 1:many)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1272" y="677" width="380" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_line_701" value="" style="endArrow=none;startArrow=none;strokeColor=#F57F17;dashed=1;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="710" as="sourcePoint" />
+            <mxPoint x="1264" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_line_label_701" value="Referential check WARNING (&gt;0%, &lt;=1% unmatched -- category_translation link)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1272" y="701" width="380" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_line_725" value="" style="endArrow=none;startArrow=none;strokeColor=#757575;dashed=1;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="734" as="sourcePoint" />
+            <mxPoint x="1264" y="734" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_line_label_725" value="Inferred ZIP-prefix join, WARNING (&gt;0%, &lt;=1% unmatched)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1272" y="725" width="380" height="18" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
