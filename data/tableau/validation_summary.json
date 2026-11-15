@@ -1,0 +1,169 @@
+{
+  "delivered_product_revenue": 13221498.11,
+  "customers": 93358,
+  "orders": 99441,
+  "delivered_orders": 96478,
+  "orders_without_segment": 2758,
+  "customers_without_review": 603,
+  "shipment_rows": 112650,
+  "shipment_orders": 98666,
+  "orders_without_shipment": 775,
+  "state_month_rows": 675,
+  "states": 27,
+  "months": 25,
+  "missing_customer_state_orders": 0,
+  "delivered_without_payment": 1,
+  "max_customer_monetary_gap": 2.2737367544323206e-13,
+  "null_counts": {
+    "orders_primary_payment_type": 1,
+    "orders_total_payment_value": 0,
+    "orders_customer_state": 0,
+    "shipments_seller_state": 0,
+    "shipments_distance_km": 555,
+    "shipments_delivery_delay_days": 2454,
+    "shipments_delay_on_delivered": 8,
+    "shipments_delay_on_non_delivered": 7
+  },
+  "top_states": [
+    {
+      "customer_state": "SP",
+      "distinct_order_count": 41746
+    },
+    {
+      "customer_state": "RJ",
+      "distinct_order_count": 12852
+    },
+    {
+      "customer_state": "MG",
+      "distinct_order_count": 11635
+    },
+    {
+      "customer_state": "RS",
+      "distinct_order_count": 5466
+    },
+    {
+      "customer_state": "PR",
+      "distinct_order_count": 5045
+    }
+  ],
+  "top_months": [
+    {
+      "purchase_month": "2017-11",
+      "distinct_order_count": 7544
+    },
+    {
+      "purchase_month": "2018-01",
+      "distinct_order_count": 7269
+    },
+    {
+      "purchase_month": "2018-03",
+      "distinct_order_count": 7211
+    },
+    {
+      "purchase_month": "2018-04",
+      "distinct_order_count": 6939
+    },
+    {
+      "purchase_month": "2018-05",
+      "distinct_order_count": 6873
+    }
+  ],
+  "segments": [
+    {
+      "customer_segment": "High Value",
+      "segment_sort": 1,
+      "customer_count": 13144,
+      "customer_percentage": 14.079136228282524,
+      "average_clv_score": 82.35054968046256,
+      "average_monetary": 252.43,
+      "total_product_revenue": 3317992.65,
+      "average_frequency": 1.0671028606208155,
+      "average_recency": 98.29450699939136,
+      "average_review_score": 4.997985138973424,
+      "revenue_share": 25.095436405126108
+    },
+    {
+      "customer_segment": "Medium-High Value",
+      "segment_sort": 2,
+      "customer_count": 52727,
+      "customer_percentage": 56.478287881060005,
+      "average_clv_score": 69.27474696708201,
+      "average_monetary": 123.89,
+      "total_product_revenue": 6532268.84,
+      "average_frequency": 1.0295673943141086,
+      "average_recency": 253.83949399738273,
+      "average_review_score": 4.783551685015814,
+      "revenue_share": 49.40641964815892
+    },
+    {
+      "customer_segment": "Medium Value",
+      "segment_sort": 3,
+      "customer_count": 15220,
+      "customer_percentage": 16.302834250947964,
+      "average_clv_score": 51.28705376697327,
+      "average_monetary": 104.99,
+      "total_product_revenue": 1597899.78,
+      "average_frequency": 1.0323915900131406,
+      "average_recency": 278.5238501971091,
+      "average_review_score": 3.4645893460411217,
+      "revenue_share": 12.085618185668674
+    },
+    {
+      "customer_segment": "Low Value",
+      "segment_sort": 4,
+      "customer_count": 12267,
+      "customer_percentage": 13.139741639709506,
+      "average_clv_score": 26.633022879813044,
+      "average_monetary": 144.56,
+      "total_product_revenue": 1773336.84,
+      "average_frequency": 1.0151626314502322,
+      "average_recency": 261.2781446156354,
+      "average_review_score": 1.3519442840249705,
+      "revenue_share": 13.412525761046304
+    }
+  ],
+  "funnel": [
+    {
+      "stage_order": 1,
+      "stage_name": "Orders Placed",
+      "order_count": 99441,
+      "conversion_percentage": 100.0,
+      "drop_off_count": 0,
+      "percentage_of_initial_orders": 100.0
+    },
+    {
+      "stage_order": 2,
+      "stage_name": "Orders with Payment Records",
+      "order_count": 99440,
+      "conversion_percentage": 99.99899437857624,
+      "drop_off_count": 1,
+      "percentage_of_initial_orders": 99.99899437857624
+    },
+    {
+      "stage_order": 3,
+      "stage_name": "Delivered Orders",
+      "order_count": 96477,
+      "conversion_percentage": 97.02031375703942,
+      "drop_off_count": 2963,
+      "percentage_of_initial_orders": 97.01933809997888
+    },
+    {
+      "stage_order": 4,
+      "stage_name": "Orders with Valid Reviews",
+      "order_count": 95831,
+      "conversion_percentage": 99.33041035687262,
+      "drop_off_count": 646,
+      "percentage_of_initial_orders": 96.36970666023068
+    }
+  ],
+  "status_counts": {
+    "delivered": 96478,
+    "shipped": 1107,
+    "canceled": 625,
+    "unavailable": 609,
+    "invoiced": 314,
+    "processing": 301,
+    "created": 5,
+    "approved": 2
+  }
+}

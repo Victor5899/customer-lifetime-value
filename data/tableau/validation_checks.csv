@@ -1,0 +1,29 @@
+check,passed,detail
+Customer row count matches Week 4,True,"93,358 rows; Week 4 customers 93,358"
+Customer primary key has no duplicates or missing values,True,duplicate rows 0; missing keys 0
+Order row count matches Week 2,True,"99,441 rows; Week 2 orders 99,441"
+Order primary key has no duplicates or missing values,True,duplicate rows 0; missing keys 0
+Shipment composite key has no duplicates or missing values,True,"112,650 rows; duplicate keys 0"
+State-month composite key has no duplicates,True,675 rows; duplicate keys 0
+Funnel has one row per stage and a unique stage order,True,"stages ['Orders Placed', 'Orders with Payment Records', 'Delivered Orders', 'Orders with Valid Reviews']"
+Segment profile has one row per baseline segment,True,"segments ['High Value', 'Medium-High Value', 'Medium Value', 'Low Value']"
+Delivered product revenue reconciles to the Week 2 delivered orders,True,"extract R$ 13,221,498.11; Week 2 delivered R$ 13,221,498.11"
+Customer monetary sums to delivered product revenue,True,"monetary sum R$ 13,221,498.11; max customer gap R$ 0.000000"
+Segment revenue sums to delivered product revenue,True,"segment revenue R$ 13,221,498.11"
+State-month revenue sums to delivered product revenue,True,"state-month revenue R$ 13,221,498.11"
+Revenue shares sum to 100,True,sum of revenue_share = 100.000000
+Customer percentages sum to 100,True,sum of customer_percentage = 100.000000
+Segment customer counts sum to the Week 4 population,True,"profile customers 93,358"
+State-month distinct orders match the Week 5 heat map,True,"cells 675; count mismatches 0; order total 99,441; orders without a state 0"
+State-month delivered revenue matches the Week 5 cell values,True,"revenue cell mismatches 0; delivered orders 96,478"
+"Funnel counts, conversion, and drop-off match Week 5",True,"stage counts 99,441 > 99,440 > 96,477 > 95,831; count mismatches 0"
+Funnel stage counts are non-increasing,True,"99,441 >= 99,440 >= 96,477 >= 95,831"
+Segment profile matches the Week 5 customer counts and revenue,True,customer-count mismatches 0; revenue mismatches 0
+Order timestamps use YYYY-MM-DD HH:MM:SS,True,unparsed timestamps 0
+State-month dates use YYYY-MM and YYYY-MM-DD,True,months 25; first 2016-09; last 2018-10
+Measure columns reload as numeric values,True,"customer, order, state-month, shipment, funnel, and segment measures are numeric"
+Missing reviews remain null on the customer extract,True,customers without a review score 603
+Every delivered order has a Week 4 segment,True,"delivered orders without a segment 0; all orders without a segment 2,758"
+Shipment orders are a subset of the order extract,True,"shipment rows 112,650; distinct shipment orders 98,666; orders with no shipment row 775"
+Each shipment order has one customer state,True,orders with conflicting customer_state 0
+Week 2–5 source files were not modified,True,protected files unchanged
