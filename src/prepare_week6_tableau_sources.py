@@ -91,19 +91,52 @@ def main() -> None:
     source_hashes = {str(path): md5_file(path) for path in PROTECTED_FILES}
     TABLEAU_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Read only the columns this export writes or checks. The Week 2 order file,
+    # the Week 4 customer file, and the Week 3 shipment file keep their full
+    # schemas on disk. Narrowing the read does not change the Tableau schemas.
     orders = pd.read_csv(
         PROCESSED_DIR / "olist_order_level_cleaned.csv",
+        usecols=[
+            "order_id",
+            "customer_unique_id",
+            "order_purchase_timestamp",
+            "order_status",
+            "total_product_value",
+            "total_freight_value",
+            "total_payment_value",
+            "primary_payment_type",
+            "customer_state",
+            "has_payment_records",
+        ],
         dtype={"order_id": "string", "customer_unique_id": "string", "customer_state": "string"},
     )
     customers = pd.read_csv(
         PROCESSED_DIR / "olist_customer_clv.csv",
+        usecols=[
+            "customer_unique_id",
+            "recency_days",
+            "frequency",
+            "monetary",
+            "average_review_score",
+            "rfm_index",
+            "clv_score",
+            "customer_segment",
+        ],
         dtype={"customer_unique_id": "string", "customer_segment": "string"},
     )
     shipments = pd.read_csv(
         PROCESSED_DIR / "olist_order_distance_analysis.csv",
+        usecols=[
+            "order_id",
+            "order_item_id",
+            "customer_state",
+            "seller_state",
+            "distance_km",
+            "delivery_delay_days",
+            "is_delivered_order",
+        ],
         dtype={
             "order_id": "string",
-            "customer_unique_id": "string",
             "customer_state": "string",
             "seller_state": "string",
         },
